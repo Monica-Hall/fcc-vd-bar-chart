@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded',function() {
     
       var dataset = json.data;
   
-      //Convert text year data into JS Date objects so they can be plotted
       var yearData=[];
       for (var i = 0; i<dataset.length; ++i) {
           yearData.push(new Date(dataset[i][0])); 
@@ -48,16 +47,16 @@ document.addEventListener('DOMContentLoaded',function() {
       var minDate = d3.min(yearData, (d) => d);
       var maxDateMore = new Date (maxDate);
       var minDateLess = new Date(minDate); 
-      maxDateMore.setMonth(maxDate.getMonth()+3);		//Adding a quarter so we have room for last bar on the graph
-      minDateLess.setMonth(minDate.getMonth()-3);		//Subtracting a quarter so we have room at the beginning of the graph
+      maxDateMore.setMonth(maxDate.getMonth()+3);		
+      minDateLess.setMonth(minDate.getMonth()-3);		
             
       //Get the range we want to display on the Y axis
       var maxValue = d3.max(dataset, (d) => d[1]);
-      var roundedUpMax = Math.ceil(maxValue/1000)*1000;		//Round up so the graph doesn't go to the very top
+      //Round up so the graph doesn't go to the very top
+      var roundedUpMax = Math.ceil(maxValue/1000)*1000;		
       
-      //const barSpacing = 30;
       var barPadding = 5;
-      var barWidth = ((width-padding) / (dataset.length+2) );	//Calculate the width of each bar on the bar graph by dividing up the graph equally amongst the entries, account for the 2 extra quarters
+      var barWidth = ((width-padding) / (dataset.length+2) );	
       
       //Define scales
       var yScale = d3.scaleLinear()
@@ -100,8 +99,7 @@ document.addEventListener('DOMContentLoaded',function() {
       .attr("background", "yellow")
       .attr("stroke", "black");
   
-      
-      //Add bars for bar graph
+// - User Story #5: My chart should have a rect element for each data point with a corresponding class="bar" displaying the data.      
       svg.selectAll("rect")
           .data(dataset)
           .enter()
@@ -120,11 +118,19 @@ document.addEventListener('DOMContentLoaded',function() {
                   return yScale(roundedUpMax-d[1]);
               }
           })
+
+        // - User Story #6: Each bar should have the properties data-date and data-gdp containing date and GDP values.
+
+          // - User Story #10: The data-date attribute and its corresponding bar element should align with the corresponding value on the x-axis.
           .attr('data-date', (d,i) => (d[0]))
+          // - User Story #11: The data-gdp attribute and its corresponding bar element should align with the corresponding value on the y-axis.
           .attr('data-gdp', (d,i) => (d[1]))
           .attr("fill", "LightBlue")
+          
+          // - User Story #12: I can mouse over an area and see a tooltip with a corresponding id="tooltip" which displays more information about the area.
           .on('mouseover', function(d, i) {
               tooltip.text(d[0] + ": $" + d[1] + " Billions of Dollars")
+              // - User Story #13: My tooltip should have a data-date property that corresponds to the data-date of the active area.
               .attr('data-date', d[0])
               .attr('opacity', 0.9);
               
