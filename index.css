@@ -1,0 +1,21 @@
+body {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    background: #ADD8E6;
+  }
+
+  #title {
+      margin-bottom: 100px;
+      color: #347AB7; 
+  }
+  
+  .infoGraphic{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background : white;
+    padding: 10px;
+    box-shadow: 3px 3px darkgray;
+  }
+  
+  .bar:hover{
+    fill: #347AB7;
+  }
