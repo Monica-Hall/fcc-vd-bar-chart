@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded',function() {
           .attr("x", (d, i) => xScale(yearData[i]))
           .attr("y", (d, i) => height - yScale(roundedUpMax-d[1]))
           .attr("width", (d, i) => barWidth) 
+          // - User Story #9: Each bar element's height should accurately represent the data's corresponding GDP.
           .attr("height", function(d, i){
               if (yScale(roundedUpMax-d[1]) <= 0)
               { 
