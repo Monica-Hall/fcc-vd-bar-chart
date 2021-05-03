@@ -72,8 +72,8 @@ document.addEventListener('DOMContentLoaded',function() {
       //Add Tooltips
       var tooltip = svg.append("text")
       .attr("id", "tooltip")
-      .attr("x", 0.5* width - 100)	//Put info near center of the width of the SVG
-      .attr("y", height*0.5) 	// Put info at center of height of the SVG
+      .attr("x", 0.5* width - 100)	
+      .attr("y", height*0.5) 	
       .attr("opacity", 0.9)
       .attr("background", "yellow")
       .attr("stroke", "black");
@@ -98,11 +98,10 @@ document.addEventListener('DOMContentLoaded',function() {
               }
           })
 
-        // - User Story #6: Each bar should have the properties data-date and data-gdp containing date and GDP values.
-
-          // - User Story #10: The data-date attribute and its corresponding bar element should align with the corresponding value on the x-axis.
+    // - User Story #6: Each bar should have the properties data-date and data-gdp containing date and GDP values.
+          // - User Story #7: The bar elements' data-date properties should match the order of the provided data.
           .attr('data-date', (d,i) => (d[0]))
-          // - User Story #11: The data-gdp attribute and its corresponding bar element should align with the corresponding value on the y-axis.
+          // - User Story #8: The bar elements' data-gdp properties should match the order of the provided data.
           .attr('data-gdp', (d,i) => (d[1]))
           .attr("fill", "LightBlue")
           
