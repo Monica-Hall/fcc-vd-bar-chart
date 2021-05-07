@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded',function() {
       var dataset = json.data;
   
       var yearData=[];
-      for (var i = 0; i<dataset.length; ++i) {
+      for (var i = 0; i < dataset.length; ++i) {
           yearData.push(new Date(dataset[i][0])); 
       }
                   
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded',function() {
       const width = fullwidth - 2 * padding;
       const height = fullheight - 2 * padding;
             
-      //Get the range we want to display on X axis
+      //Get range we want to display on X axis
       var maxDate = d3.max(yearData, (d) => d);
       var minDate = d3.min(yearData, (d) => d);
       var maxDateMore = new Date (maxDate);
@@ -29,11 +29,9 @@ document.addEventListener('DOMContentLoaded',function() {
       maxDateMore.setMonth(maxDate.getMonth()+3);		
       minDateLess.setMonth(minDate.getMonth()-3);		
             
-      //Get the range we want to display on the Y axis
+      //Get range we want to display on the Y axis
       var maxValue = d3.max(dataset, (d) => d[1]);
-      //Round up so the graph doesn't go to the very top
       var roundedUpMax = Math.ceil(maxValue/1000)*1000;		
-      
       var barPadding = 5;
       var barWidth = ((width-padding) / (dataset.length+2) );	
       
@@ -46,7 +44,7 @@ document.addEventListener('DOMContentLoaded',function() {
           .domain([minDateLess, maxDateMore])
           .range([padding, width]) ;
       
-     // Define the y and x axis
+     // Define y and x axis
       var yAxis = d3.axisLeft(yScale);
       var xAxis = d3.axisBottom(xScale);	
             
